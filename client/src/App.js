@@ -44,22 +44,22 @@ function App() {
                 <Route
                     path='/'
                     element={ <>
-                    <Nav/>
-                    <Home/>
+                    {/* <Nav/> */}
+                    {/* <Home/> */}
                     </> }
                 />
 
                 <Route
                     path='/Login'
                     element={ <>
-                    <Nav/>
+                    {/* <Nav/> */}
                     <Login/>
                     </> }
                 />
                 <Route
                     path='/Signup'
                     element={ <>
-                      <Nav/>
+                      {/* <Nav/> */}
                       <Signup/>
                       </> }
                 />
@@ -77,7 +77,7 @@ function App() {
                 <Route
                     path='/'
                     element={ <>
-                    <Nav/>
+                    {/* <Nav/> */}
                     <Landing/>
                     </> }
                 />
@@ -85,14 +85,14 @@ function App() {
                 <Route
                     path='/Login'
                     element={ <>
-                    <Nav/>
+                    {/* <Nav/> */}
                     <Login/>
                     </> }
                 />
                 <Route
                     path='/Signup'
                     element={ <>
-                      <Nav/>
+                      {/* <Nav/> */}
                       <Signup/>
                       </> }
                 />
