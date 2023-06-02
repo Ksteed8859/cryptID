@@ -1,0 +1,21 @@
+/* Landing Page */
+.title {
+    text-align: center;
+    font-size: 100px;
+    color: white;
+}
+
+.red {
+    color: #66BF2F;
+}
+
+.landingSmall {
+    text-align: center;
+    font-size: 20px;
+    color: white;
+}
+
+.landingLinks {
+    text-align: center;
+    font-size: 20px;
+}
