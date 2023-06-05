@@ -16,4 +16,16 @@ mutation addUser(
     $email: String!
     $username: String!
     $password: String!
-)`
+) {
+    addUser(
+        email: $email
+        username: $username
+        password: $password
+    ) {
+        token
+        user {
+            _id
+        }
+    }
+}
+`;

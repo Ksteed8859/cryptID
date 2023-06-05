@@ -45,6 +45,7 @@ function Login(props) {
                 </div>
                 <div className='flex-row space-between my-2'>
                     <label htmlFor='pwd'>Password: </label>
+                    <label>*Password must be at least 8 characters*</label>
                     <input
                         placeholder="********"
                         name='password'
