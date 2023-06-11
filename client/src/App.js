@@ -12,6 +12,10 @@ import { setContext } from '@apollo/client/link/context';
 import Landing from './pages/Landing';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
+
+import SearchBar from './components/SearchBar/SearchBar';
+import Nav from './components/Nav/Nav';
+
 import './styles/App.css';
 
 const httpLink = createHttpLink({
@@ -45,7 +49,7 @@ function App() {
                 <Route
                     path='/'
                     element={ <>
-                    {/* <Nav/> */}
+                    <Nav/>
                     {/* <Home/> */}
                     </> }
                 />
@@ -53,15 +57,22 @@ function App() {
                 <Route
                     path='/Login'
                     element={ <>
-                    {/* <Nav/> */}
+                    <Nav/>
                     <Login/>
                     </> }
                 />
                 <Route
                     path='/Signup'
                     element={ <>
-                      {/* <Nav/> */}
+                      <Nav/>
                       <Signup/>
+                      </> }
+                />
+                <Route
+                    path='/Search'
+                    element={ <>
+                      <Nav/>
+                      <SearchBar/>
                       </> }
                 />
             </Routes>
@@ -78,7 +89,7 @@ function App() {
                 <Route
                     path='/'
                     element={ <>
-                    {/* <Nav/> */}
+                    <Nav/>
                     <Landing/>
                     </> }
                 />
@@ -86,14 +97,14 @@ function App() {
                 <Route
                     path='/Login'
                     element={ <>
-                    {/* <Nav/> */}
+                    <Nav/>
                     <Login/>
                     </> }
                 />
                 <Route
                     path='/Signup'
                     element={ <>
-                      {/* <Nav/> */}
+                      <Nav/>
                       <Signup/>
                       </> }
                 />
