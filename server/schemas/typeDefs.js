@@ -6,12 +6,23 @@ type User {
     username: String
     email: String
 }
+type Cryptid {
+    _id: ID
+    name: String
+    alias: String
+    description: String
+    photo: String
+    photoCredits: String
+    location: String
+    wikiLink: String
+}
 type Auth {
     token: ID
     user: User
 }
 type Query {
     user: User
+    product(_id: ID!): Product
 }
 type Mutation {
     addUser(username: String!, email: String!, password: String!): Auth
