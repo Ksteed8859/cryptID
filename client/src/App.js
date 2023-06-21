@@ -12,6 +12,7 @@ import { setContext } from '@apollo/client/link/context';
 import Landing from './pages/Landing';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
+import Search from './pages/Search';
 
 import SearchBar from './components/SearchBar/SearchBar';
 import Nav from './components/Nav/Nav';
@@ -50,7 +51,7 @@ function App() {
                     path='/'
                     element={ <>
                     <Nav/>
-                    {/* <Home/> */}
+                    <Search/>
                     </> }
                 />
 
