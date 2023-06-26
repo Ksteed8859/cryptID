@@ -13,9 +13,11 @@ import Landing from './pages/Landing';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
 import Search from './pages/Search';
+import Detail from './pages/Detail';
 
-import SearchBar from './components/SearchBar/SearchBar';
-import Nav from './components/Nav/Nav';
+import Nav from './components/Nav/Nav.js';
+
+import { cryptidData } from './data/Data';
 
 import './styles/App.css';
 
@@ -70,10 +72,10 @@ function App() {
                       </> }
                 />
                 <Route
-                    path='/Search'
+                    path='/:name'
                     element={ <>
                       <Nav/>
-                      <SearchBar/>
+                      <Detail/>
                       </> }
                 />
             </Routes>
@@ -103,7 +105,7 @@ function App() {
                     </> }
                 />
                 <Route
-                    path='/Signup'
+                    path='Signup'
                     element={ <>
                       <Nav/>
                       <Signup/>

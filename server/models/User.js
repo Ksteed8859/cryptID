@@ -1,14 +1,18 @@
 const mongoose = require('mongoose');
 const {Schema} = mongoose;
+const Bookmark = require('./Bookmark');
 const bcrypt = require('bcrypt');
 
 const userSchema = new Schema({
-    email: {
-        type: String, 
+    firstName: {
+        type: String,
         required: true,
-        match: /\S+@\S+\.\S+/,
-        unique: true,
-        trim: true,
+        trim: true
+    },
+    lastName: {
+        type: String,
+        required: true,
+        trim: true
     },
     username: {
         type: String,
@@ -21,6 +25,7 @@ const userSchema = new Schema({
         required: true,
         minlength: 8,
     },
+    bookmarks: [Bookmark.schema]
 });
 
 userSchema.pre('save', async function (next) {

@@ -1,15 +1,34 @@
 const { AuthenticationError } = require('apollo-server-express');
-const { User } = require('../models');
+const { User, Cryptid, Bookmark } = require('../models');
 const { signToken } = require('../utils/auth');
 
 const resolvers = {
     Query: {
         user: async (parent, args, context) => {
             if (context.user) {
-                // TODO: Finish User Resolvers (maybe save searches)
-                return user;
+              const user = await User.findById(context.user._id).populate({
+                path: 'bookmarks.cryptids'
+              });
+
+              user.bookmarks.sort((a, b) => b.bookmarkDate - a.bookmarkDate);
+
+              return user;
             }
-            throw new AuthenticationError('Not Logged In');
+
+            throw new AuthenticationError('Not logged in');
+        },
+        cryptid: async (parent, { _id }) => {
+            return await Cryptid.findById(_id);
+        },
+        bookmark: async (parent, { _id }, context) => {
+            if (context.user) {
+                const user = await User.findById(context.user_id).populate({
+                    path: 'bookmarks.cryptids',
+                });
+                return user.bookmarks.id(_id);
+            }
+
+            throw new AuthenticationError('Not logged in');
         }
     }, 
 
@@ -20,8 +39,8 @@ const resolvers = {
 
             return { token, user };
         },
-        login: async (parent, { email, password}) => {
-            const user = await User.findOne({ email });
+        login: async (parent, { username, password}) => {
+            const user = await User.findOne({ username });
 
             if (!user) {
                 throw new AuthenticationError('No user found');
@@ -40,7 +59,18 @@ const resolvers = {
             }
             throw new AuthenticationError('Not Logged In');
         },
-    }
+        addBookmark: async (parent, { cryptids }, context) => {
+            if (context.user) {
+                const bookmark = new Bookmark({ cryptids });
+
+                await User.findByIdAndUpdate(context.user._id, { $push: { bookmarks: bookmark} });
+
+                return bookmark;
+            }
+
+            throw new AuthenticationError('Not logged in');
+        },
+    },
 }
 
 module.exports = resolvers;
