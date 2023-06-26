@@ -5,19 +5,19 @@ import { LOGIN } from '../utils/mutations';
 import Auth from '../utils/auth';
 
 function Login(props) {
-    const [formState, setFormState] = useState({ email: '', password: '' });
+    const [formState, setFormState] = useState ({ username: '', password: '' });
     const [login, { error }] = useMutation(LOGIN);
 
     const handleFormSubmit = async (event) => {
         event.preventDefault();
         try {
             const mutationResponse = await login({
-                variables: { email: formState.email, password: formState.password },
+                variables: { username: formState.username, password: formState.password },
             });
             const token = mutationResponse.data.login.token;
             Auth.login(token);
-        } catch (event) {
-            console.log(event);
+        } catch (e) {
+            console.log('error: ' + e.message);
         }
     };
 
@@ -31,23 +31,25 @@ function Login(props) {
 
     return (
         <div className="container">
-            <h2> Login to Your Account</h2>
+            <h2>Don't have an account? <Link to='/signup'>Sign Up Here!</Link> </h2>
+
+            <h2>Login</h2>
             <form onSubmit={handleFormSubmit}>
-                <div className='flex-row space-between my-2'>
-                    <label htmlFor='email'>Email: </label>
-                    <input
-                        placeholder="cryptID@example.com"
-                        name='email'
-                        type='email'
-                        id='email'
+                <div className="flex-row space-between my-2">
+                    <label htmlFor="username">Username: </label>
+                    <input 
+                        placeholder='username'
+                        name='username'
+                        type='username'
+                        id='username'
                         onChange={handleChange}
                     />
                 </div>
-                <div className='flex-row space-between my-2'>
-                    <label htmlFor='pwd'>Password: </label>
-                    <label>*Password must be at least 8 characters*</label>
-                    <input
-                        placeholder="********"
+                <div className="flex-row space-between my-2">
+                    <label htmlFor="password">Password: </label>
+                    <h2>Password must be at least 8 characters</h2>
+                    <input 
+                        placeholder='********'
                         name='password'
                         type='password'
                         id='password'
@@ -56,17 +58,15 @@ function Login(props) {
                 </div>
                 {error ? (
                     <div>
-                        <p className='errorText'>Email or password is incorrect</p>
-                    </div> 
+                        <p className='error-text'>Username or Password is Incorrect</p>
+                    </div>
                 ) : null}
-                <div className='submitBtn'>
-                    <button type='submit'>Log In</button>
+                <div className='flex-row flex-end'>
+                    <button type="submit">Submit</button>
                 </div>
             </form>
-            <Link to="/Signup">First Time? Sign up here!</Link>
         </div>
     );
 }
-
 
 export default Login;
